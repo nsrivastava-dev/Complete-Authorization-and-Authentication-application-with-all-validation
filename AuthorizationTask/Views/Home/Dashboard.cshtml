@@ -1,0 +1,64 @@
+﻿@model System.Data.DataTable
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1 class="text-center mt-5">All Registered User</h1>
+    <div class="col-sm-8 mx-auto"> 
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-bg-dark">
+                    <th>Sr no.</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Qualification</th>
+                    <th>Mobile No.</th>
+                    <th>Email</th>
+                    <th>password</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Rows != null)
+            {
+                    int i=1;
+                foreach(System.Data.DataRow row in Model.Rows)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@row["name"]</td>
+                        <td>@row["gender"]</td>
+                        <td>@row["qul"]</td>
+                        <td>@row["mobno"]</td>
+                        <td>@row["email"]</td>
+                        <td>@row["pass"]</td>
+                        <td>@row["address"]</td>
+                    </tr>
+                        i++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+            <div class="btn btn-dark text-decoration-none mt-5"><a style="text-decoration:none;color:white" href="/home/changepass?email=@User.Identity.Name">Change Password</a></div>
+            <div class="btn btn-dark text-decoration-none mt-5 "><a style="text-decoration:none;color:white" href="/home/logout">Logout</a></div>
+        </div>
+        
+        <div class="col-sm-5"></div>
+    </div>
+   
+    
+</body>
+</html>
